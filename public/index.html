@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Librería</title>
+</head>
+<body>
+<h1>Libros por Año</h1>
+<select id="yearSelect" onchange="filterByYear()">
+    <option value="">Seleccione un año</option>
+</select>
+<table id="booksTable" border="1">
+    <thead>
+    <tr>
+        <th>Libro</th>
+        <th>Autor</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/libros')
+            .then(response => response.json())
+            .then(data => {
+                const years = new Set();
+                data.libreria.libro.forEach(libro => {
+                    years.add(libro.anno);
+                });
+                const yearSelect = document.getElementById('yearSelect');
+                years.forEach(year => {
+                    const option = document.createElement('option');
+                    option.value = year;
+                    option.textContent = year;
+                    yearSelect.appendChild(option);
+                });
+            });
+    });
+
+    function filterByYear() {
+        const selectedYear = document.getElementById('yearSelect').value;
+        const tbody = document.getElementById('booksTable').getElementsByTagName('tbody')[0];
+        tbody.innerHTML = '';
+
+        fetch('/libros')
+            .then(response => response.json())
+            .then(data => {
+                data.libreria.libro.filter(libro => libro.anno.toString() === selectedYear)
+                    .forEach(libro => {
+                        const row = tbody.insertRow();
+                        const cell1 = row.insertCell(0);
+                        const cell2 = row.insertCell(1);
+                        cell1.textContent = libro.titulo;
+                        cell2.textContent = libro.autor;
+                    });
+            });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<libreria>
+    <libro>
+        <titulo>El Señor de los Anillos</titulo>
+        <autor>J.R.R. Tolkien</autor>
+        <anno>1954</anno>
+    </libro>
+    <libro>
+        <titulo>Fundación</titulo>
+        <autor>Isaac Asimov</autor>
+        <anno>1951</anno>
+    </libro>
+    <libro>
+        <titulo>Dune</titulo>
+        <autor>Frank Herbert</autor>
+        <anno>1965</anno>
+    </libro>
+    <libro>
+        <titulo>1984</titulo>
+        <autor>George Orwell</autor>
+        <anno>1949</anno>
+    </libro>
+</libreria>
